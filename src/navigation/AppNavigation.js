@@ -26,25 +26,29 @@ import StepsScreen from '../screens/Steps/StepsScreen';
 import PremiumScreen from '../screens/Premium/PremiumScreen';
 import SuccessScreen from '../screens/Success/SuccessScreen';
 import SignInScreen from '../screens/SignIn/SignInScreen';
+import PlateScreen from '../screens/Plate/PlateScreen';
+import PlateFoundScreen from '../screens/PlateFound/PlateFoundScreen';
+import InsuranceScreen from '../screens/Insurance/InsuranceScreen';
+import insurancePaymentResultScreen from '../screens/insurancePaymentResult/insurancePaymentResultScreen';
+import InsuranceWelcomeScreen from '../screens/InsuranceWelcome/insuranceWelcomeScreen';
+import PhoneRequestScreen from '../screens/PhoneRequest/PhoneRequestScreen';
+import SmsRequestScreen from '../screens/SmsRequest/SmsRequestScreen';
+import EmailRequestScreen from '../screens/EmailRequest/EmailRequestScreen';
 
 const MainNavigator = createStackNavigator(
   {
-    Home: HomeScreen,
-    Community: CommuityScreen,
-    Water: WaterScreen,
-    Comment: CommentScreen,
-    CreatePost: CreatePostScreen,
-    Settings: SettingsScreen,
-    CreateComment: CreateCommentScreen,
-    Notifications: NotificationsScreen,
-    GoalAchieved: GoalAchievedScreen,
-    Nutrition: NutritionScreen,
-    Steps: StepsScreen,
-    Premium: PremiumScreen,
-    Success: SuccessScreen
+    Plate: PlateScreen,
+    PlateFound: PlateFoundScreen,
+    Insurance: InsuranceScreen,
+    insurancePaymentResult: insurancePaymentResultScreen,
+    InsuranceWelcome: InsuranceWelcomeScreen,
+    PhoneRequest: PhoneRequestScreen,
+    SmsRequest: SmsRequestScreen,
+    EmailRequest: EmailRequestScreen
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'InsuranceWelcome',    
+    headerMode: 'none',
     defaultNavigationOptions: ({ navigation }) => ({
       headerTitleStyle: {
         fontWeight: 'bold',

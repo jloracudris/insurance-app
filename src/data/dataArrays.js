@@ -160,6 +160,16 @@ export const profilePictures = [
   }
 ];
 
+export const carPicture = [
+  {
+    id: 0,
+    photoUrl: 'https://static.carroya.com/vehiculos/1909653/1909653_1_w.jpg',
+    title: 'Nissan Versa',
+    description: 'Versa'
+  },
+];
+
+
 export const premiumArray = [
   {
     id: 0,

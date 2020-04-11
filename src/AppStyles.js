@@ -7,7 +7,13 @@ const SCREEN_WIDTH = width < height ? width : height;
 export const logoContainer = StyleSheet.create({
   headerContainer: {
     height: CONTAINER_HEIGHT,
-    marginTop: 100,
+    marginTop: 70,
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  headerContainerInnerPage: {
+    height: CONTAINER_HEIGHT,
+    marginTop: 10,
     justifyContent: 'flex-start',
     alignItems: 'center'
   },
@@ -22,7 +28,7 @@ export const logoContainer = StyleSheet.create({
   },
   iconContainer: {
     position: 'absolute',
-    left: 25,
+    left: 18,
     top: 10
   }
 });

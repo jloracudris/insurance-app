@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableHighlight, Text, View } from 'react-native';
+import { TouchableHighlight, Text, View, Button } from 'react-native';
 import styles from './styles';
 
 export default class ContinueButton extends React.Component {
@@ -11,7 +11,7 @@ export default class ContinueButton extends React.Component {
           underlayColor="rgba(73,182,77,1,0.9)"
           style={styles.btnContainer}
         >
-          <Text style={styles.btnText}>Continue</Text>
+          <Text style={styles.btnText}>{this.props.text? this.props.text : 'Continue'}</Text>
         </TouchableHighlight>
       </View>
     );
