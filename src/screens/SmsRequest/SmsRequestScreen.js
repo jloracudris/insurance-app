@@ -45,6 +45,7 @@ const animateCell = ({hasValue, index, isFocused}) => {
 const SmsRequestScreen = (ownProps) => {
   const [code, setCode] = useState('');
   const [showSpinner, setShowSpinner] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const ref = useBlurOnFulfill({code, cellCount: CELL_COUNT});
   const [ props, getCellOnLayoutHandler ] = useClearByFocusCell({
@@ -95,7 +96,11 @@ const SmsRequestScreen = (ownProps) => {
   };
   
   const onPressButton = () => {
-    ownProps.navigation.navigate('EmailRequest');
+    if(!code) {
+      setErrorMessage("El código enviado al SMS es necesario para continuar!");
+    } else {
+      ownProps.navigation.navigate('EmailRequest');
+    }
   };
 
   return (
@@ -127,6 +132,10 @@ const SmsRequestScreen = (ownProps) => {
             />
         </SafeAreaView>
         <Text style={styles.description}>¿ No lo has recibido ? <Text style={styles.blue}>Reenviar en 00:05</Text></Text>
+        {
+          errorMessage &&
+          <Text style={styles.error}>{errorMessage}</Text>
+        }
         <ContinueButton onPress={() => onPressButton()} text="Continuar"/>
       </ScrollView>
     </TouchableWithoutFeedback>

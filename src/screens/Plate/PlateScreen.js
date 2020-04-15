@@ -45,6 +45,7 @@ const animateCell = ({hasValue, index, isFocused}) => {
 
 const PlateScreen = (ownProps) => {
   const [plate, setPlate] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
   const [vehicleInfo, setVehicleInfo] = useState({});
   const [showSpinner, setShowSpinner] = useState(false);
 
@@ -100,29 +101,35 @@ const PlateScreen = (ownProps) => {
     setShowSpinner(true);
     getPlateInfo(plate).
       then(res => {
-        const optionsImg = {
-            method: 'POST',
-            body: JSON.stringify({ "placa": plate }),
-            headers:{
-                'Content-Type': 'application/json',
-                'referer': 'https://eva.segurosbeta.com/pay'
-            }
-        }
-        fetch("https://eva.segurosbeta.com/placa", optionsImg)
-        .then(imgRes => { return imgRes.json() })
-        .then(imgResponse => {
-          let vehicleInfo = {
-            ...res,
-            ...imgResponse
-          };
-          
-          setVehicleInfo(vehicleInfo)
-          ownProps.addUserPlate(vehicleInfo);
+        if(res.data.return && res.data.return.error === "No existe placa") {
           setShowSpinner(false);
-          ownProps.navigation.navigate('PlateFound');
-        })
+          setErrorMessage("La placa no ha sido encontrada");
+        } else {
+          const optionsImg = {
+              method: 'POST',
+              body: JSON.stringify({ "placa": plate }),
+              headers:{
+                  'Content-Type': 'application/json',
+                  'referer': 'https://eva.segurosbeta.com/pay'
+              }
+          }
+          fetch("https://eva.segurosbeta.com/placa", optionsImg)
+          .then(imgRes => { return imgRes.json() })
+          .then(imgResponse => {
+            let vehicleInfo = {
+              ...res.data.return,
+              ...imgResponse
+            };          
+            setVehicleInfo(vehicleInfo)
+            ownProps.addUserPlate(vehicleInfo);
+            setErrorMessage(null);
+            setShowSpinner(false);          
+            ownProps.navigation.navigate('PlateFound');      
+          })
+        }
+      }).catch(error => {
+        console.log(error);
       })
-    
   };
 
   return (
@@ -152,6 +159,10 @@ const PlateScreen = (ownProps) => {
               renderCell={renderCell}
             />
         </SafeAreaView>
+        {
+          errorMessage && 
+          <Text style={styles.error}>{errorMessage}</Text>        
+        }
         <ContinueButton onPress={() => onPressButton()} text="Cotizar"/>
       </ScrollView>
     </TouchableWithoutFeedback>

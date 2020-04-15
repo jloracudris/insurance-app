@@ -59,8 +59,8 @@ class PlateFoundScreen extends React.Component {
   }
   
   getDay = () => {
-    const date = new Date(this.props.vehicule.expired);
-    return date.getDay()
+    const date = new Date(this.props.vehicule.expired);        
+    return date.getDate();
   }
 
   render() {

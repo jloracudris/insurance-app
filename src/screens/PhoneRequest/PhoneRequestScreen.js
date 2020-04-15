@@ -11,15 +11,20 @@ import IntlPhoneInput from 'react-native-intl-phone-input';
 
 const PhoneRequestScreen = (props) => {
   const [phone, setPhone] = useState('');  
+  const [errorMessage, setErrorMessage] = useState(null);  
   const [showSpinner, setShowSpinner] = useState(false);
   
   const onPressButton = () => {
-    setShowSpinner(true);
-    props.addUserPhone(phone);    
-    setTimeout(() => {
-      setShowSpinner(false);
-      props.navigation.navigate('SmsRequest');
-    }, 1000);
+    if(!phone) {
+      setErrorMessage("El número de teléfono es necesario para poder continuar!")      
+    } else {
+      setShowSpinner(true);
+      props.addUserPhone(phone);    
+      setTimeout(() => {
+        setShowSpinner(false);
+        props.navigation.navigate('SmsRequest');
+      }, 1000);
+    }
   };
 
   const onChangeText = ({dialCode, unmaskedPhoneNumber, phoneNumber, isVerified}) => {
@@ -49,6 +54,10 @@ const PhoneRequestScreen = (props) => {
         <SafeAreaView>
           <IntlPhoneInput onChangeText={onChangeText} defaultCountry="CO" phoneInputStyle={styles.input} dialCodeTextStyle={styles.dialCodeTextStyle} />
         </SafeAreaView>
+        {
+          errorMessage &&
+          <Text style={styles.error}>{errorMessage}</Text>
+        }
         <ContinueButton onPress={() => onPressButton()} text="Continuar"/>
       </ScrollView>
     </TouchableWithoutFeedback>

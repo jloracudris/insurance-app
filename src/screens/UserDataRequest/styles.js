@@ -17,20 +17,21 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     margin: 20,
-    marginBottom: 70,
+    marginBottom: 25,
     padding: 5,
     width: SCREEN_WIDTH - 100,
     borderRadius: 10,
     backgroundColor: 'white',
     alignSelf: 'center'
   },
+  dialCodeTextStyle: {
+    paddingLeft: 10
+  },
   input: {
     color: 'black',
     fontSize: 15,
-    marginLeft: 10,
-    textAlign: 'center',
+    marginLeft: 3,
     height: 50,
-    textTransform: "uppercase"
   },
   spinnerTextStyle: {
     color: '#FFF'
@@ -41,17 +42,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
   },
-  description: {
-    fontSize: 13,
-    color: '#9c9eb9',
-    textAlign: 'center'
-  },
-  blue:{
-    color: "#7265E3"
-  },
   error: {
     fontSize: 13,
     color: 'red',
+    textAlign: 'center'
+  },
+  description: {
+    fontSize: 16,
+    color: '#9c9eb9',
     textAlign: 'center'
   },
 });

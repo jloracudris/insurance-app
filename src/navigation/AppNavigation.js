@@ -34,6 +34,7 @@ import InsuranceWelcomeScreen from '../screens/InsuranceWelcome/insuranceWelcome
 import PhoneRequestScreen from '../screens/PhoneRequest/PhoneRequestScreen';
 import SmsRequestScreen from '../screens/SmsRequest/SmsRequestScreen';
 import EmailRequestScreen from '../screens/EmailRequest/EmailRequestScreen';
+import UserDataRequestScreen from '../screens/UserDataRequest/UserDataRequestScreen';
 
 const MainNavigator = createStackNavigator(
   {
@@ -44,7 +45,8 @@ const MainNavigator = createStackNavigator(
     InsuranceWelcome: InsuranceWelcomeScreen,
     PhoneRequest: PhoneRequestScreen,
     SmsRequest: SmsRequestScreen,
-    EmailRequest: EmailRequestScreen
+    EmailRequest: EmailRequestScreen,
+    UserDataRequest: UserDataRequestScreen
   },
   {
     initialRouteName: 'InsuranceWelcome',    
