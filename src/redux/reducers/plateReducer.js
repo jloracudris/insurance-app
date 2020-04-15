@@ -9,6 +9,7 @@ const plateState = {
   };
   
   export const plateReducer = (state = plateState, action) => {            
+    console.log(action.vehicleInfo);
     switch (action.type) {
       case 'ADD_USERPLATE': {        
         state = { 
@@ -29,6 +30,12 @@ const plateState = {
           email: action.email
         }
       }
+      case 'ADD_USERDATA': {
+        state = {
+          ...state,
+          userData: action.userData
+        }
+      }      
       default:
         return state;
     }

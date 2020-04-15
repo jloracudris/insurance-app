@@ -10,22 +10,26 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 const EmailRequestScreen = (props) => {
   const [email, setEmail] = useState('');  
-  const [error, setError] = useState(null);  
+  const [errorMessage, setErrorMessage] = useState(null);  
   const [showSpinner, setShowSpinner] = useState(false);
   
-  const onPressButton = () => {
-    setShowSpinner(true);
-    const result = validate(email);
-
-    if(result){      
-      props.addUserEmail(email);
-      setTimeout(() => {
-        setShowSpinner(false);
-        /* props.navigation.navigate('SmsRequest'); */
-      }, 1000);
+  const onPressButton = () => {    
+    if(!email) {
+      setErrorMessage("El correo electrónico es necesario para continuar!");
     } else {
-      setShowSpinner(false);
-      setError("El correo electronico es invalido.")
+      setShowSpinner(true);
+      const result = validate(email);
+
+      if(result){      
+        props.addUserEmail(email);
+        setTimeout(() => {
+          setShowSpinner(false);
+          props.navigation.navigate('UserDataRequest');
+        }, 1000);
+      } else {
+        setShowSpinner(false);
+        setError("El correo electrónico es invalido.")
+      }
     }
   };
 
@@ -63,7 +67,10 @@ const EmailRequestScreen = (props) => {
             value={email}
           />          
         </View>
-        <Text style={styles.error}>{error}</Text>
+        {
+          errorMessage &&
+          <Text style={styles.error}>{errorMessage}</Text>
+        }
         <ContinueButton onPress={() => onPressButton()} text="Continuar"/>
       </ScrollView>
     </TouchableWithoutFeedback>

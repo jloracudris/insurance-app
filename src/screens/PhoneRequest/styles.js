@@ -42,6 +42,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
   },
+  error: {
+    fontSize: 13,
+    color: 'red',
+    textAlign: 'center'
+  },
 });
 
 export default styles;
